@@ -1,0 +1,72 @@
+body {
+  margin: 0px 0px;
+}
+
+.bg {
+  visibility: hidden;
+  display: inline-block;
+  margin: 2px 2px;
+}
+
+.bg-white {
+  background: white;
+}
+
+.bg-black {
+  background: black;
+}
+
+.bg-transparent {
+  background: transparent;
+}
+
+.favicon-image {
+  width: 32px;
+}
+
+.container {
+  font-family: monospace;
+  background: rgba(0,0,0,5%);
+  padding: 2px 2px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+#favicon-url:hover {
+  color: black;
+  text-decoration: underline !important;
+}
+
+#favicon-url-wrapper, #favicon-url, #no-favicon {
+  color: dimgrey;
+  font-weight: 500;
+  margin-top: 2px;
+  font-size: 1.2em;
+  text-decoration: none !important;
+}
+
+#favicon-url {
+  cursor: pointer;
+}
+
+#no-favicon {
+  display: none;
+  cursor: default;
+  text-wrap: nowrap;
+}
+
+#size {
+  background: rgba(0,0,0,75%);
+  color: white;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  padding: 1px 1px;
+  font-weight: 600;
+}
+
+#size:empty { 
+  display: none;
+}
