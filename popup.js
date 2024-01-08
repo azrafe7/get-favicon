@@ -3,13 +3,14 @@
 (async () => {
 
   let manifest = chrome.runtime.getManifest();
-  console.log('popup.js');
-  console.log(manifest.name + " v" + manifest.version);
+  console.log("[GetFavIcon:PU]", manifest.name + " v" + manifest.version);
 
   let [activeTab] = await chrome.tabs.query({active: true, currentWindow: true});
 
-  function updateFavicon(url) {
-    console.log("updateFavicon:", url);
+  function updateFavicon(data) {
+    const url = data?.url;
+    const dataURL = data?.dataURL;
+    console.log("[GetFavIcon:PU] updateFavicon:", url);
 
     let imgElements = document.querySelectorAll('.favicon-image');
     let width = null;
@@ -20,7 +21,7 @@
         if (idx === 0) {
           width = img.naturalWidth;
           height = img.naturalHeight;
-          console.log("onload", width, height);
+          console.log("[GetFavIcon:PU] onload", width, height);
 
           if (width && height) {
             let sizeElement = document.querySelector('#size');
@@ -45,18 +46,21 @@
     urlElement.href = url;
   }
 
-  console.log('activeTab:', activeTab);
+  console.log("[GetFavIcon:PU] activeTab:", activeTab);
   let favIconUrl = activeTab?.favIconUrl;
-  updateFavicon(favIconUrl);
-
-  if (favIconUrl) {
-    let res = await fetch(favIconUrl);
-    console.log('fetch:', res);
-    if (res?.url && res?.url != favIconUrl) {
-      favIconUrl = res?.url;
-      updateFavicon(favIconUrl);
+  
+  let message = { event:'fetchFavIcon', data: { url:favIconUrl }};
+  chrome.runtime.sendMessage(message);
+  
+  chrome.runtime.onMessage.addListener(async (msg, sender, sendResponse) => {
+    console.log("[GetFavIcon:PU] onMessage", msg);
+    const { event, data } = msg;
+    
+    if (event === 'gotFavIcon') {
+      console.log("[GetFavIcon:PU] gotFavIcon", data);
+      updateFavicon(data);
     }
-  }
+  });   
 
 })();
 

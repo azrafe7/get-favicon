@@ -1,12 +1,16 @@
 {
   "name": "Get FavIcon",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Get FavIcon of current tab.",
   "manifest_version": 3,
   "permissions": ["activeTab", "tabs"],
   "background": {
     "service_worker": "background.js"
   },
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ],
   "icons": {
     "128": "assets/favicon.png"
   },
