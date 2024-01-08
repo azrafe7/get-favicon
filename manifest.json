@@ -8,6 +8,7 @@
     "service_worker": "background.js"
   },
   "icons": {
+    "128": "assets/favicon.png"
   },
   "action": {
     "default_title": "Get FavIcon",
