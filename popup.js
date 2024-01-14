@@ -33,7 +33,7 @@
       if (url) {
         img.src = url;
       } else {
-        img.parentElement.style.setProperty('display', 'none');          
+        img.parentElement.style.setProperty('display', 'none');
       }
     }
 
@@ -48,19 +48,19 @@
 
   console.log("[GetFavIcon:PU] activeTab:", activeTab);
   let favIconUrl = activeTab?.favIconUrl;
-  
+
   let message = { event:'fetchFavIcon', data: { url:favIconUrl }};
   chrome.runtime.sendMessage(message);
-  
+
   chrome.runtime.onMessage.addListener(async (msg, sender, sendResponse) => {
     console.log("[GetFavIcon:PU] onMessage", msg);
     const { event, data } = msg;
-    
+
     if (event === 'gotFavIcon') {
       console.log("[GetFavIcon:PU] gotFavIcon", data);
       updateFavicon(data);
     }
-  });   
+  });
 
 })();
 
