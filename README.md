@@ -1,6 +1,9 @@
 # Get FavIcon
 Get FavIcon of current tab.
 
+![Get FavIcon](./webstore_assets/screenshot_01.png "Get FavIcon")
+
+
 # Overview
 Clicking the extension icon will open a popup window showing the FavIcon for the current tab, along with a preview of the icon on white/transparent/black background, it's original size, and a link to it.
 
